@@ -1,0 +1,37 @@
+<launch>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="debug"           default="false" />
+        <arg name="gui"             default="true" />
+        <arg name="paused"          default="false" />
+        <arg name="use_sim_time"    default="true" />
+        <arg name="headless"        default="false" />
+    </include>
+
+    <arg name="gui" default="False" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder  
+        $(find mobile_robot_description)/urdf/mobile_robot.urdf.xacro"/>
+
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" 
+        output="screen" args="-urdf -model MobileRobot -param robot_description -z 0.05" />
+
+    <param name="use_gui" value="$(arg gui)" />
+
+    <rosparam command="load" file="$(find mobile_robot)/cfg/mobile_robot_odometry.yaml" />
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <!-- <node name="mobile_robot_odometry" pkg="mobile_robot" type="mobile_robot_odometry" /> -->
+    <node name="custom_link_state_subscriber" pkg="mobile_robot" type="custom_link_state_subscriber" />
+</launch>
+
+<!-- 
+    <과제>
+    * launch file 해석하기
+    * 10~12, 14~15, 17 제외
+
+    분석내용:
+        {
+            분석내용
+            작성
+        }
+-->

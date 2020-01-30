@@ -1,0 +1,7 @@
+add_executable(custom_link_state_subscriber
+  src/custom_link_state_subscriber.cpp
+)
+add_dependencies(custom_link_state_subscriber ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(custom_link_state_subscriber
+  ${catkin_LIBRARIES}
+)

@@ -1,0 +1,6 @@
+mobile_robot_odometry:
+  leftwheel_linkname: MobileRobot::wheel_1
+  rightwheel_linkname: MobileRobot::wheel_3
+  base_link_id : "/custom_base"
+  odom_link_id : "/custom_odom"
+  separation_length : 0.3

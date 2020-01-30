@@ -1,0 +1,11 @@
+* blog 1
+https://hoodymong.tistory.com/3
+
+* transforms matrix blog
+https://m.blog.naver.com/PostView.nhn?blogId=kimjw1218&logNo=70178629876&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+
+* definition of odometry blog
+https://elecs.tistory.com/296
+
+* odometry example
+https://www.youtube.com/watch?v=xSdHlC2ISq8
