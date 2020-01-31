@@ -1,5 +1,6 @@
 # ROS_study_homeworkes
 숭실대학교 ROS 스터디를 진행하면서 스터디를 듣는 학생들에게 매주마다 내주는 과제입니다.
+
 과제는 ROS_wiki를 인용한 것도 있으며, 직접 만든 코드들도 있습니다.
 
 # Homework information
@@ -22,4 +23,28 @@
     * static tf, tf를 이해하고, rviz상에서 이해하는 과제입니다.
     
 5. WEEK5_HOMEWORK
-    * 선형대수 라이브러리 eigen을 이해
+    * 선형대수 라이브러리 eigen을 이해하고 로봇공학에서 중요한 좌표계변환을 이해하기 위한 코드 입니다.
+    * roll, pitch, yaw 변환을 이해합니다.
+    * rotation, transform 행렬들을 이해합니다.
+    
+6. WEEK6_HOMEWORK
+      * visualization_msgs/Marker 메세지를 이해하고, 이용하여 표준메세지를 publish하는 과제입니다.
+      * rivz를 통해 maker를 확인합니다.
+      
+7. WEEK7_HOMEWORK
+      * ROS의 파라미터를 이해하게 하기 위한 과제입니다.
+      * serviceClient, serviceServer를 이용하여 코드를 작성하고, 변수를 파라미터로 받아옵니다.
+      * getParam() 함수를 이해하도록 하였습니다.
+      
+8. WEEK9_HOMEWORK
+      * gazebo 물리 시뮬레이터를 사용하여 mobile robot의 동작을 이해합니다.
+      * 로봇에 대한 바퀴정보를 얻어와서 각 바퀴의 속도정보로 바꿉니다.
+      * gazebo상에 로봇의 정보를 서브스크라이브 하여 비워져있는 함수가 동작하도록 합니다.
+      
+9. WEEK10_HOMEWORK
+      * week9에서 배웠던 속도 계산을 이용하여 odometry정보로 변환하는 과제입니다.
+      * 차량의 구조와, 각 바퀴들의 속도, 바퀴의 반지름 등의 정보를 이용하는 법을 학습합니다.
+      * tf를 배운 것을 활용하여 rviz상에서 odometry정보를 확인 할 수 있도록 하는 과제입니다.
+      
+      
+      
