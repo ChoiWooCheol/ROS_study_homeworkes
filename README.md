@@ -45,6 +45,9 @@
       * week9에서 배웠던 속도 계산을 이용하여 odometry정보로 변환하는 과제입니다.
       * 차량의 구조와, 각 바퀴들의 속도, 바퀴의 반지름 등의 정보를 이용하는 법을 학습합니다.
       * tf를 배운 것을 활용하여 rviz상에서 odometry정보를 확인 할 수 있도록 하는 과제입니다.
-      
-      
+
+10. WEEK11_HOMEWORK
+      * week10 homework의 내용과 비슷한 odometry정보를 만들어내는 코드를 분석하는 과제입니다.
+      * teleop twist keyboard 노드에서 발행되는 /cmd_vel 토픽을 분석합니다.
+      * /cmd_vel 토픽을 mobile robot에 적용하여 키보드 값에 따른 로봇의 위치를 계산합니다.
       
