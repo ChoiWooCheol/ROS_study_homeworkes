@@ -50,5 +50,5 @@
       * week10 homework의 내용과 비슷한 odometry정보를 만들어내는 코드를 분석하는 과제입니다.
       * teleop twist keyboard 노드에서 발행되는 /cmd_vel 토픽을 분석합니다.
       * /cmd_vel 토픽을 mobile robot에 적용하여 키보드 값에 따른 로봇의 위치를 계산합니다.
-      
+      * SLAM을 이해하기 위한 논문 분석을 진행하여 자율주행 mobile robot의 이해를 학습합니다.
       
