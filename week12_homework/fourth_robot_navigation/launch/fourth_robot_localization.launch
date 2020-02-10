@@ -1,0 +1,77 @@
+<launch>
+    <!-- these are the arguments you can pass this launch file, for example
+    paused:=true -->
+    <arg name="model" default="$(find fourth_robot_description)/robots/fourth_robot.urdf.xacro"/>
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name"   value="$(find fourth_robot_gazebo)/worlds/clearpath_playpen.world"/>
+        <arg name="debug"        value="$(arg debug)" />
+        <arg name="gui"          value="$(arg gui)" />
+        <arg name="paused"       value="$(arg paused)" />
+        <arg name="use_sim_time" value="$(arg use_sim_time)" />
+        <arg name="headless"     value="$(arg headless)" />
+    </include>
+
+    <include file="$(find fourth_robot_bringup)/launch/sensors/lrf_merger.launch"/>
+
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(arg model)'"/>
+
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" 
+        output="screen" args="-urdf -model fourth_robot -param robot_description" />
+
+    <include file="$(find fourth_robot_control)/launch/fourth_robot_control.launch"/>
+
+    <!-- map파일 load -->
+    <arg name="map_file" default="$(find fourth_robot_navigation)/map/playground.yaml"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+
+
+  <!-- Arguments -->
+  <arg name="/front/scan"     default="scan"/>
+  <arg name="initial_pose_x" default="0.0"/>
+  <arg name="initial_pose_y" default="0.0"/>
+  <arg name="initial_pose_a" default="2.5"/>
+
+  <!-- AMCL -->
+  <node pkg="amcl" type="amcl" name="amcl">
+    <param name="min_particles"             value="1000"/> <!-- 허용되는 최소 입자 수입니다. -->
+    <param name="max_particles"             value="1500"/> <!-- 허용되는 최대 입자 수입니다. -->
+    <param name="kld_err"                   value="0.02"/> <!-- 실제 분포와 추정된 분포 사이의 최대 오류. -->
+    <param name="update_min_d"              value="0.20"/> <!-- 필터 업데이트를 수행하기 전에 변환 이동 필요. default: 0.2 meters-->
+    <param name="update_min_a"              value="0.20"/> <!-- 필터 업데이트를 수행하기 전에 회전 이동 필요. default: π/6.0 radians-->
+    <param name="resample_interval"         value="1"/> <!-- 다시 샘플링하기 전에 필요한 필터 업데이트 수입니다. default: 2-->
+    <param name="transform_tolerance"       value="0.5"/> <!-- 이 변환이 미래에 유효하다는 것을 나타내기 위해 게시된 변환의 날짜를 표시하는 시간.  default: 0.1 seconds-->
+    <param name="recovery_alpha_slow"       value="0.001"/> <!-- 무작위 포즈를 추가하여 회복 시기를 결정하는 데 사용된다. 좋은 값은 0.001일 수 있다. -->
+    <param name="recovery_alpha_fast"       value="0.01"/> <!-- 무작위 포즈를 추가하여 회복 시기를 결정하는 데 사용되는 빠른 평균 체중 필터의 지수 붕괴율. 좋은 값은 0.1일 수 있다. -->
+    <param name="initial_pose_x"            value="$(arg initial_pose_x)"/> <!-- 초기 포즈 평균(x) -->
+    <param name="initial_pose_y"            value="$(arg initial_pose_y)"/> <!-- 초기 포즈 평균(y) -->
+    <param name="initial_pose_a"            value="$(arg initial_pose_a)"/> <!-- 초기 포즈 평균(yaw) -->
+    <param name="gui_publish_rate"          value="10.0"/> <!-- 시각화를 위해 스캔 및 경로가 게시되는 최대 속도(Hz), 비활성화하려면 -1.0. -->
+
+    <remap from="scan"                      to="/front/scan"/> <!--  -->
+    <param name="laser_max_range"           value="3.5"/> <!-- 고려해야 할 최대 스캔 범위: -1.0은 레이저의 보고된 최대 범위를 사용하게 한다. -->
+    <param name="laser_max_beams"           value="180"/> <!-- 필터를 업데이트할 때 사용할 각 스캔의 균일한 간격 보 수입니다. -->
+    <param name="laser_z_hit"               value="0.5"/> <!-- 모델의 z_hit 부분에 대한 혼합 가중치. default = 0.1-->
+    <param name="laser_z_short"             value="0.05"/> <!-- 모델의 z_short 부분에 대한 혼합 가중치.  -->
+    <param name="laser_z_max"               value="0.05"/> <!-- 모델의 z_max 부분에 대한 혼합 가중치 -->
+    <param name="laser_z_rand"              value="0.5"/> <!-- 모델의 z_rand 부분에 대한 혼합 가중치 -->
+    <param name="laser_sigma_hit"           value="0.2"/> <!-- 모델의 z_hit 부분에 사용되는 가우스 모델의 표준 편차. -->
+    <param name="laser_lambda_short"        value="0.1"/> <!-- 모델의 z_짧은 부분에 대한 지수 붕괴 매개변수.  -->
+    <param name="laser_likelihood_max_dist" value="2.0"/> <!-- 지도에서 장애물 인플레이션을 수행할 최대 거리. -->
+    <param name="laser_model_type"          value="likelihood_field"/> <!--  -->
+
+    <param name="odom_model_type"           value="diff"/> <!--  -->
+    <param name="odom_alpha1"               value="0.1"/> <!--  -->
+    <param name="odom_alpha2"               value="0.1"/> <!--  -->
+    <param name="odom_alpha3"               value="0.1"/> <!--  -->
+    <param name="odom_alpha4"               value="0.1"/> <!--  -->
+    <param name="odom_frame_id"             value="odom"/> <!--  -->
+    <param name="base_frame_id"             value="base_footprint"/> <!--  -->
+  </node>
+
+</launch>

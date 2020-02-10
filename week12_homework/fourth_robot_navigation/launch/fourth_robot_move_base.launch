@@ -1,0 +1,15 @@
+<launch>
+    <arg name="odom_topic" default="odom"/>
+
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/>
+        <rosparam file="$(find fourth_robot_navigation)/cfg/costmap_common_params.yaml" command="load" ns="local_costmap"/>
+        <rosparam file="$(find fourth_robot_navigation)/cfg/local_costmap_params.yaml" command="load"/>
+        <rosparam file="$(find fourth_robot_navigation)/cfg/global_costmap_params.yaml" command="load"/>
+        <rosparam file="$(find fourth_robot_navigation)/cfg/move_base_params.yaml" command="load"/>
+        <rosparam file="$(find fourth_robot_navigation)/cfg/dwa_local_planner_params.yaml" command="load"/>
+        <remap from="odom" to="$(arg odom_topic)"/>
+        <remap from="cmd_vel" to="diff_drive_controller/cmd_vel"/>
+    </node>
+</launch>
+<!-- 맵에 관련되어있는 파라미터들을 사용하여 cost map 을 만든다. -->

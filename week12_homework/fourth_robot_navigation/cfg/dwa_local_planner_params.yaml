@@ -1,0 +1,47 @@
+DWAPlannerROS:
+
+# Robot Configuration Parameters
+  max_vel_x: 2.0 # 로봇의 최대 x 속도(m/s).
+  min_vel_x: -2.0 # 로봇의 최소 x 속도(m/s).
+
+  max_vel_y: 0.0 # 로봇의 최대 y 속도(m/s).
+  min_vel_y: 0.0 # 로봇의 최소 y 속도(m/s).
+
+# The velocity when robot is moving in a straight line
+  max_trans_vel:  0.5 # 로봇의 최대 변환 속도 절대값(m/s).
+  min_trans_vel:  0.25 # 로봇의 최소 변환 속도 절대값(m/s)
+
+  max_rot_vel: 2.75 # 로봇의 최대 회전 속도 절대값(rad/s)
+  min_rot_vel: 1.37 # 로봇의 최소 회전 속도 절대값(rad/s)
+
+  acc_lim_x: 2.5 # 로봇의 x 가속도 한계(m/sec^2)
+  acc_lim_y: 0.0 # 로봇의 y 가속도 한계(m/sec^2)
+  acc_lim_theta: 3.2 # 로봇의 회전 가속도 한계(rad/sec^2)
+
+# Goal Tolerance Parametes
+  xy_goal_tolerance: 0.05 # 목표 달성 시 x & y 거리의 컨트롤러에 대한 허용 오차(미터)
+  yaw_goal_tolerance: 0.17 # 목표를 달성할 때 yaw/rotation 시 컨트롤러에 대한 허용 오차(라디안)
+  latch_xy_goal_tolerance: false # 목표 허용오차를 도달하면 로봇이 목표 xy 위치에 도달하면 로봇이 목표 허용오차를 벗어나더라도 로봇이 제 자리에서 회전할 수 있는가?
+
+# Forward Simulation Parameters
+  sim_time: 1.5 # 궤적을 전진 시뮬레이션하는 데 소요되는 시간(초)
+  vx_samples: 5 # x 속도 공간 탐색 시 사용할 샘플 수
+  vy_samples: 0 # y 속도 공간을 탐색할 때 사용할 샘플 수
+  vth_samples: 10 # 세타 속도 공간을 탐색할 때 사용할 샘플 수
+  controller_frequency: 10.0
+
+# Trajectory Scoring Parameters
+  path_distance_bias: 32.0 # 컨트롤러가 주어진 경로에 얼마나 가까이 있어야 하는지에 대한 가중치
+  goal_distance_bias: 20.0 # 컨트롤러가 로컬 목표 달성을 시도해야 하는 비율에 대한 가중치, 속도 제어
+  occdist_scale: 0.02 # 컨트롤러가 장애물을 피하려고 시도하는 양에 대한 가중치
+  forward_point_distance: 0.325 # 추가 채점 지점을 배치하기 위한 로봇의 중심점으로부터의 거리(미터)
+  stop_time_buffer: 0.2 # 궤적이 유효한 것으로 간주되기 위해 로봇이 충돌 전에 정지해야 하는 시간(초)
+  scaling_speed: 0.25 # 로봇의 풋프린트 확장을 시작하는 속도 절대값(m/s)
+  max_scaling_factor: 0.2 # 로봇의 설치 공간을 확장하는 최대 요인
+
+# Oscillation Prevention Parameters
+  oscillation_reset_dist: 0.05 # 
+
+# Debugging
+  publish_traj_pc : true # 
+  publish_cost_grid_pc: true # 
