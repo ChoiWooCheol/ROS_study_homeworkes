@@ -59,6 +59,6 @@
       * local path planning, global path planning의 기초적인 개념을 이해합니다.
       
 * WEEK13_HOMEWORK
-      * slam 논문 분석을 통해 자율주행 시스템에서 slam 알고리즘의 중요성을 파악할 수 있도록하는 과제입니다.
-      * 왜 몬테카를로 방식을 사용하는지, local, global planning이 나눠져있는지 학습합니다.
-      * ROS와 자율주행시스템을 이해한 후, 실제 ERP-42 언맨드솔루션 자동차 플랫폼에서 사용했던 odometry 패키지를 분석합니다.
+   * slam 논문 분석을 통해 자율주행 시스템에서 slam 알고리즘의 중요성을 파악할 수 있도록하는 과제입니다.
+   * 왜 몬테카를로 방식을 사용하는지, local, global planning이 나눠져있는지 학습합니다.
+   * ROS와 자율주행시스템을 이해한 후, 실제 ERP-42 언맨드솔루션 자동차 플랫폼에서 사용했던 odometry 패키지를 분석합니다.
