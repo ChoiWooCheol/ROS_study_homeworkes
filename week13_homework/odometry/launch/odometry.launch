@@ -1,0 +1,24 @@
+<launch>
+    <param name="wheelbase" value="1.05"/>
+    
+    <node pkg="odometry" type="odom_pub" name="odom_wheelbased">
+        <param name="/frame_id" value="odom"/>
+        <param name="/child_frame_id" value="base_footprint"/>        
+        <param name="/initial_x" value="0.0"/>
+        <param name="/initial_y" value="0.0"/>
+        <param name="/initial_heading" value="0.0"/>
+        <param name="/trans_cov" value="0.3"/>
+        <param name="/rot_cov" value="0.3"/>
+        <param name="/tf_publish" value="true"/>
+    </node>
+     <include file="$(find nmea_navsat_driver)/launch/GPS.launch"/>
+<!--
+    <include file="$(find sensor_launch)/launch/sensor_launch_no_camera.launch"/>
+
+    <include file="$(find robot_localization)/launch/ekf_template.launch"/>
+    <include file="$(find robot_localization)/launch/dual_ekf_navsat_example.launch"/>
+    -->
+    <include file="$(find robot_localization)/launch/ekf_template.launch"/>
+    <include file="$(find platform_rx_thread_test)/launch/rx_thread_test.launch"/>
+</launch>
+
