@@ -1,0 +1,8 @@
+<launch>
+    <node pkg="platform_tx" type="platform_tx" name="platform_tx" output="screen" args="/dev/ttyUSB0">
+        <param name="frequency" value="50"/>
+        <param name="cmd_platform_topic_name" value="control/cmd_platform"/>
+
+        <param name="alignmentBias" value="0"/>
+    </node>
+</launch>

@@ -1,0 +1,6 @@
+1. add "<build_depend>platform_rx_msg</build_depend>" to your .xml
+2. add "platform_rx_msg" to your package's find_package
+3. add to your pkg's cmakelist "add_dependencies(your_executable ${catkin_EXPORTED_TARGETS})"
+
+여기 참고 :
+https://answers.ros.org/question/206257/catkin-use-ros-message-from-another-package/

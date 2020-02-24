@@ -1,0 +1,8 @@
+<launch>
+    <node pkg="platform_rx_thread_test" name="rx_thread_test" type="rx_thread_test">
+        <param name="path" value="/dev/ttyUSB0"/>
+        <param name="serial_frequency" value="20"/>
+        <param name="publish_frequency" value="20"/>
+        <param name="moving_average_element_number" value="5"/>
+    </node>
+</launch>
